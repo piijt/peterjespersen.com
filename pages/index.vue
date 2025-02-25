@@ -1,5 +1,5 @@
 <template>
-    <div class="text-white bg-primary">
+    <div class="text-white bg-primary p-4 rounded">
         <SocialLinks class="flex space-y-2" />
         <About />
         <Seperator />
