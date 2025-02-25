@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-pointer" id="logo">
+  <div class="cursor-pointer" id="logo" @click="router.push('/')">
     <img id="logoId" ref="logo" :src="logo_path" alt="logo" :style="{
       transform: `rotate(${rotation}deg)`,
       filter: `brightness(${brightness})`,
@@ -32,6 +32,9 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 defineProps({
   initials: {
