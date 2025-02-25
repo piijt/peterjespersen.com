@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans&display=swap');
+@import "tailwindcss";
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #16161d;
+
+}
+
+p,ul,ol,li {
+  font-family: 'Fira Mono', monospace;
+}
+
+/* #container {
+  padding-top: 150px;
+} */
+
+/* @media (min-width: 1500px) {
+  #container {
+    padding-left: 150px;
+  }
+} */
+
+/* #spaceBelow {
+  padding-bottom: 18px;
+} */
+
+/* #project a {
+  color: rgb(68, 188, 227);
+  text-decoration: none;
+} */
+
+
+/* #project a:hover {
+  color: #3cf0b9;
+  transition: all 0.4s ease 0s;
+} */
+
+/* 
+h2 {
+  color: white;
+} */
+
+
+/* #projectSection p {
+  color: white;
+} */
+
+
+ div#tag p {
+  position: absolute;
+  border: 1px solid white;
+  background-color: #16161d;
+  padding: 7px 8px;
+  color: white;
+  z-index: 2;
+} 
+
+/* #phj {
+  text-decoration: none;
+  color: rgb(68, 188, 227);
+} */
+
+/* #phj:hover {
+  color: #3cf0b9;
+  transition: all 0.4s ease 0s;
+} */
+
+
+
+/* #separator {
+    background: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23424242' fill-opacity='1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+} */
+
+/* #grid {
+  position: relative;
+  height: auto;
+  width: 500px;
+}
+
+div#grid img:hover {
+  opacity: .5;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+
+li {
+  float: right;
+}
+
+li a {
+  display: block;
+  color: rgb(68, 188, 227);
+  text-align: center;
+  padding: 7px 8px;
+  text-decoration: none;
+}
+
+
+a:hover {
+  color: #3cf0b9;
+  transition: all 0.4s ease 0s;
+} */
+
+/* #eyeAnimation {
+  animation: fade 1s infinite;
+} */
+
+/* @keyframes fade {
+  0%    { opacity: 1;  }
+  10%   { opacity: .9; }
+  20%   { opacity: .8; }
+  30%   { opacity: .7; }
+  40%   { opacity: .6; }
+  50%   { opacity: .5; }
+  60%   { opacity: .4; }
+  70%   { opacity: .3; }
+  70%   { opacity: .2; }
+  80%   { opacity: .1; }
+  90%   { opacity: .1; }
+  100%  { opacity: 0;  }
+} */
+
+/* footer {
+  position: absolute;
+  bottom: 0;
+  width: 99%;
+  height: 60px;
+} */
+
+/* PROJECT SECTION CANVAS' */
+
+/* canvas {
+  opacity: .5;
+} */
+
+/* canvas:hover {
+  transition: all 0.7s ease 0s;
+  opacity: 1;
+}
+
+
+div#sineWaves canvas {
+  width: 600px;
+  height: auto;
+}
+
+#ogl canvas {
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+} */
+
+/* #flux canvas {
+  width: 600px !important;
+  height: 300px !important;
+} */
+
