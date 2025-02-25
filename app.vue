@@ -1,37 +1,6 @@
 <template>
-  <div class="app">
     <NuxtLayout>
       <NuxtPage page-key="static" />
     </NuxtLayout>
-  </div>
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans&display=swap');
-
-body {
-  font-family: 'Fira Sans', sans-serif;
-  background-color: #16161d;
-}
-
-.bg-primary {
-  background-color: #16161d;
-}
-
-p,
-ul,
-ol,
-li {
-  font-family: 'Fira Mono', monospace;
-}
-
-.primary {
-  color: rgb(68, 188, 227);
-  text-decoration: none;
-}
-
-.primary:hover {
-  color: #3cf0b9;
-  transition: all 0.4s ease 0s;
-}
-</style>
