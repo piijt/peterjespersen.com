@@ -10,14 +10,13 @@
 definePageMeta({
   layout: "root",
 });
+
+useHead({
+  title: "Peter Jespersen",
+});
+
+useSeoMeta({
+  description:
+    "Hey, I'm Peter Jespersen. Software developer from Denmark, passionate about programming and always eager to learn something new.",
+});
 </script>
-<style scoped>
-.content {
-  color: white;
-  /* display: flex;
-        flex-direction: column; */
-}
-.bg-red {
-  background-color: red;
-}
-</style>
