@@ -51,7 +51,7 @@ type employment_entry = {
 
 const employment_history = ref<employment_entry[]>([
   {
-    website: "https://kinematic.com",
+    website: "https://makin3d.com",
     role: "Software Developer",
     company: "Kinematic",
     start_date: new Date("2023-12-01"),
