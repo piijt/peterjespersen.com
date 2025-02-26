@@ -1,23 +1,33 @@
 <template>
   <div class="cursor-pointer" id="logo" @click="router.push('/')">
-    <img id="logoId" ref="logo" :src="logo_path" alt="logo" :style="{
-      transform: `rotate(${rotation}deg)`,
-      filter: `brightness(${brightness})`,
-      opacity: opacity
-    }" />
+    <img
+      id="logoId"
+      ref="logo"
+      :src="logo_path"
+      alt="logo"
+      :style="{
+        transform: `rotate(${rotation}deg)`,
+        filter: `brightness(${brightness})`,
+        opacity: opacity,
+      }"
+    />
     <div class="p-4" id="tag">
       <p class="space-x-2">
         <span>{{ v_location }}</span>
-        <span @click="easterEgg = !easterEgg" class="primary" id="phj">{{ initials }}</span>
+        <span @click="easterEgg = !easterEgg" class="primary" id="phj">{{
+          initials
+        }}</span>
       </p>
     </div>
   </div>
-  <div v-if="easterEgg && p_easter_egg" class="text-white p-25 fixed flex flex-col text-sm">
-    <p class="flex flex-row">
-      Scroll up
-    </p>
+  <div
+    v-if="easterEgg && p_easter_egg"
+    class="text-white p-25 fixed flex flex-col text-sm"
+  >
+    <p class="flex flex-row">Scroll up</p>
     <p>
-      Rotation: <span class="primary">
+      Rotation:
+      <span class="primary">
         {{ rotation }}
       </span>
     </p>
@@ -31,10 +41,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
 defineProps({
   initials: {
@@ -47,7 +57,7 @@ defineProps({
   },
   p_easter_egg: {
     type: Boolean,
-    default: false, 
+    default: false,
   },
 });
 const rotation = ref(-46);
@@ -57,9 +67,9 @@ const maxRotation = 360;
 const brightness = ref(1);
 const opacity = ref(1);
 
-const v_location = ref("")
+const v_location = ref("");
 
-const easterEgg = ref(false)
+const easterEgg = ref(false);
 const handleScroll = (event: WheelEvent) => {
   const delta = event.deltaY > 0 ? 1 : -1;
   velocity.value += delta * 6;
@@ -77,7 +87,6 @@ const animate = () => {
     }
   }
 
-
   brightness.value = Math.max(1, brightness.value - 0.05);
   opacity.value = Math.max(1, opacity.value - 0.03);
 
@@ -85,17 +94,17 @@ const animate = () => {
 };
 
 onMounted(() => {
-  window.addEventListener('wheel', handleScroll);
+  window.addEventListener("wheel", handleScroll);
   animate();
 });
 
 onUnmounted(() => {
-  window.removeEventListener('wheel', handleScroll);
+  window.removeEventListener("wheel", handleScroll);
 });
 
 onBeforeMount(() => {
-  v_location.value = window.location.host
-})
+  v_location.value = window.location.host;
+});
 </script>
 
 <style scoped>
@@ -105,7 +114,9 @@ div#logo img#logoId {
   left: -300px;
   width: 500px;
   height: auto;
-  transition: filter 0.2s ease-out, opacity 0.2s ease-out;
+  transition:
+    filter 0.2s ease-out,
+    opacity 0.2s ease-out;
   z-index: -1;
 }
 

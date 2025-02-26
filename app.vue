@@ -1,6 +1,5 @@
 <template>
-    <NuxtLayout>
-      <NuxtPage page-key="static" />
-    </NuxtLayout>
+  <NuxtLayout>
+    <NuxtPage page-key="static" />
+  </NuxtLayout>
 </template>
-

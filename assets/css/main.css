@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans&display=swap");
 @import "tailwindcss";
 
 body {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
   background-color: #16161d;
 }
 
@@ -14,7 +14,7 @@ p,
 ul,
 ol,
 li {
-  font-family: 'Fira Mono', monospace;
+  font-family: "Fira Mono", monospace;
 }
 
 .primary {
@@ -27,5 +27,5 @@ li {
   transition: all 0.4s ease 0s;
 }
 
-#pj-123e4567-e89b-12d3-a456-426614174000 {}
-
+#pj-123e4567-e89b-12d3-a456-426614174000 {
+}
