@@ -1,8 +1,7 @@
 <template>
-  <div class="text-white bg-primary md:p-4 rounded">
-    <SocialLinks class="flex space-y-2" />
+  <div>
     <About />
-    <Seperator />
+    <img src="/images/isometric laptop_blackbg.png" />
   </div>
 </template>
 

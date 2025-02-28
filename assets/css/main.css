@@ -18,13 +18,17 @@ li {
 }
 
 .primary {
-  color: rgb(68, 188, 227);
+  color: #44bce3;
   text-decoration: none;
 }
 
 .primary:hover {
   color: #3cf0b9;
   transition: all 0.4s ease 0s;
+}
+
+.secondary-text {
+  color: #3cf0b9;
 }
 
 #pj-123e4567-e89b-12d3-a456-426614174000 {

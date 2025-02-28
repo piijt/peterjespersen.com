@@ -65,7 +65,7 @@ const velocity = ref(0);
 const friction = 0.92;
 const maxRotation = 360;
 const brightness = ref(1);
-const opacity = ref(1);
+const opacity = ref(0.5);
 
 const v_location = ref("");
 
