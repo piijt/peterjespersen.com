@@ -18,7 +18,8 @@
 </template>
 
 <script lang="ts" setup>
-const mailTo = () => {
-  document.location.href = "mailto:pj@peterjespersen.com";
-};
+import { useUtility } from '~/composables/useUtility';
+
+const {mailTo} = useUtility()
+
 </script>
