@@ -24,11 +24,7 @@
       world.
     </p>
     <p class="space-x-2 pb-4 text-sm">
-      When I'm not coding, you can find me reading tech blogs, contributing to
-      open-source projects, or exploring new hobbies.<br> <span class="primary cursor-pointer" @click="mailTo">Feel free to get in 
-        touch
-     
-      to chat about potential collaborations. </span>
+      When I'm not coding, you can find me reading tech blogs or exploring new hobbies.<br> <span class="primary cursor-pointer" @click="mailTo">Feel free to get in touch to chat about potential collaborations. </span>
     </p>
   </div>
   <Seperator />
