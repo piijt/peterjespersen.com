@@ -142,12 +142,12 @@ div#tag p {
     height: 40px;
     margin-right: 8px;
   }
-  
+
   div#tag {
     position: static;
     padding: 0;
   }
-  
+
   div#tag p {
     position: static;
     display: inline-flex;

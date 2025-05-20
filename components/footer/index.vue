@@ -18,8 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useUtility } from '~/composables/useUtility';
+import { useUtility } from "~/composables/useUtility";
 
-const {mailTo} = useUtility()
-
+const { mailTo } = useUtility();
 </script>

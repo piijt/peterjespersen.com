@@ -5,4 +5,4 @@ export interface Project {
   homepageUrl: string;
   url: string;
   stargazerCount: number;
-} 
+}

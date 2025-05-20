@@ -3,7 +3,9 @@
     <h2 class="text-lg font-semibold mb-4">Education</h2>
     <div class="space-y-8">
       <div v-for="(item, index) in entries" :key="index" class="relative pl-6">
-        <div class="absolute left-0 top-2 w-2 h-2 rounded-full bg-gray-700"></div>
+        <div
+          class="absolute left-0 top-2 w-2 h-2 rounded-full bg-gray-700"
+        ></div>
         <div class="flex flex-col">
           <span class="primary font-medium cursor-pointer">
             {{ item.school.title }}
@@ -24,10 +26,10 @@
         </div>
         <div class="mt-3">
           <div class="flex flex-wrap gap-2">
-            <img 
-              v-for="(skill, skillIndex) in item.skills" 
-              :key="skillIndex" 
-              :src="skill" 
+            <img
+              v-for="(skill, skillIndex) in item.skills"
+              :key="skillIndex"
+              :src="skill"
               :alt="skill"
               class="h-6"
             />

@@ -1,5 +1,5 @@
-import { REQUEST_CACHE_DURATION } from '~/caching';
-import type { Project } from '~/github';
+import { REQUEST_CACHE_DURATION } from "~/caching";
+import type { Project } from "~/github";
 
 type GithubRepositoryResponse = {
   data: {
@@ -21,14 +21,14 @@ type GithubRepositoryResponse = {
 export default defineCachedEventHandler(
   async (event): Promise<Project[]> => {
     const config = useRuntimeConfig(event);
-    
+
     const response = await $fetch<GithubRepositoryResponse>(
-      'https://api.github.com/graphql',
+      "https://api.github.com/graphql",
       {
-        method: 'POST',
+        method: "POST",
         headers: {
           authorization: `Bearer ${config.githubToken}`,
-          'user-agent': 'Peter Jespersen +http://peterjespersen.com',
+          "user-agent": "Peter Jespersen +http://peterjespersen.com",
         },
         body: {
           query: `
@@ -65,17 +65,16 @@ export default defineCachedEventHandler(
       (p) => ({
         ...p,
         languages: p?.languages?.nodes ?? [],
-        description: p?.description ?? '',
-        homepageUrl: p?.homepageUrl ?? '',
-        url: p?.url ?? '',
+        description: p?.description ?? "",
+        homepageUrl: p?.homepageUrl ?? "",
+        url: p?.url ?? "",
         stargazerCount: p?.stargazerCount ?? 0,
       }),
     );
 
-    
     return projects;
   },
   {
     maxAge: REQUEST_CACHE_DURATION,
   },
-); 
+);

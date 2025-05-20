@@ -1,7 +1,9 @@
 <template>
   <div class="relative min-h-screen flex flex-col">
     <Logo initials="phj" logo_path="/logo.png" :p_easter_egg="false" />
-    <div class="flex flex-col justify-center align-center m-auto max-w-[700px] relative z-10 px-4 md:px-0 flex-grow">
+    <div
+      class="flex flex-col justify-center align-center m-auto max-w-[700px] relative z-10 px-4 md:px-0 flex-grow"
+    >
       <div class="text-white md:p-4 rounded">
         <Header class="mb-4" />
         <main class="flex-grow">
