@@ -128,4 +128,33 @@ div#tag p {
   color: white;
   z-index: 2;
 }
+
+@media (max-width: 768px) {
+  div#logo {
+    position: static;
+    display: flex;
+    align-items: center;
+  }
+
+  div#logo img#logoId {
+    position: static;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+  
+  div#tag {
+    position: static;
+    padding: 0;
+  }
+  
+  div#tag p {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+}
 </style>

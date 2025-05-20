@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-row">
-    <Navigation class="" />
+  <div class="flex flex-row w-full justify-center">
+    <Navigation class="w-full" />
   </div>
 </template>
 

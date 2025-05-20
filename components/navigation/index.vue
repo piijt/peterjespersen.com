@@ -1,10 +1,9 @@
 <template>
-  <ul
-    class="flex flex-row space-x-2 bg-primary rounded justify-center align-center"
-  >
+  <ul class="flex flex-row space-x-2 bg-primary rounded justify-center align-center items-center p-2">
     <NavigationItem
+      v-for="(entry, index) in items"
+      :key="index"
       class="mt-auto"
-      v-for="entry in items"
       :to="entry.path"
       :text="entry.text"
     />
