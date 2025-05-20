@@ -42,4 +42,10 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
+  runtimeConfig: {
+    githubToken: process.env.GITHUB_TOKEN,
+    public: {
+      githubToken: process.env.GITHUB_TOKEN
+    }
+  }
 });
