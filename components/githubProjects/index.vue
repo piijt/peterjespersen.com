@@ -46,26 +46,24 @@
 </template>
 
 <script setup lang="ts">
-const fetchGithubProjects = async () => {
-  const config = useRuntimeConfig();
-  const token = config.public.githubToken;
+const config = useRuntimeConfig();
+const token = config.public.githubToken;
 
-  const query = `
-    query {
-      user(login: "piijt") {
-        pinnedItems(first: 6, types: REPOSITORY) {
-          nodes {
-            ... on Repository {
-              id
-              name
-              description
-              url
-              stargazerCount
-              repositoryTopics(first: 10) {
-                nodes {
-                  topic {
-                    name
-                  }
+const query = `
+  query {
+    user(login: "piijt") {
+      pinnedItems(first: 6, types: REPOSITORY) {
+        nodes {
+          ... on Repository {
+            id
+            name
+            description
+            url
+            stargazerCount
+            repositoryTopics(first: 6) {
+              nodes {
+                topic {
+                  name
                 }
               }
             }
@@ -73,21 +71,47 @@ const fetchGithubProjects = async () => {
         }
       }
     }
-  `;
+  }
+`;
 
-  return useFetch('https://api.github.com/graphql', {
+interface GitHubResponse {
+  data: {
+    user: {
+      pinnedItems: {
+        nodes: Array<{
+          id: string;
+          name: string;
+          description: string | null;
+          url: string;
+          stargazerCount: number;
+          repositoryTopics: {
+            nodes: Array<{
+              topic: {
+                name: string;
+              };
+            }>;
+          };
+        }>;
+      };
+    };
+  };
+}
+
+const { data, pending, error } = useAsyncData('github-pinned-repos', async () => {
+  const response = await $fetch<GitHubResponse>('https://api.github.com/graphql', {
     method: 'POST',
     body: JSON.stringify({ query }),
-    key: 'github-pinned-repos',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': `Bearer ${token}`
-    },
-    transform: (response: any) => response.data,
-    server: true
+    }
   });
-};
-
-const { data, pending, error } = await fetchGithubProjects();
+  return response.data;
+}, {
+  server: true,
+  lazy: false,
+  immediate: true,
+  transform: (response) => response
+});
 </script> 
