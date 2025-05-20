@@ -1,5 +1,4 @@
-import { Redis } from '@upstash/redis/cloudflare';
-import { REDIS_CACHE_DURATION, REQUEST_CACHE_DURATION } from '~/caching';
+import { REQUEST_CACHE_DURATION } from '~/caching';
 import type { Project } from '~/github';
 
 type GithubRepositoryResponse = {
@@ -22,23 +21,7 @@ type GithubRepositoryResponse = {
 export default defineCachedEventHandler(
   async (event): Promise<Project[]> => {
     const config = useRuntimeConfig(event);
-
-    const kvStore = new Redis({
-      url: config.upstashRedisRestUrl,
-      token: config.upstashRedisRestToken,
-    });
-
-    const cacheKey = 'github:repositories';
-
-    const cached = await kvStore.get<string>(cacheKey).catch(() => undefined);
-
-    if (cached) {
-      setResponseHeader(event, 'content-type', 'application/json');
-      setResponseHeader(event, 'x-redis-cache', 'hit');
-
-      return JSON.parse(cached) as Project[];
-    }
-
+    
     const response = await $fetch<GithubRepositoryResponse>(
       'https://api.github.com/graphql',
       {
@@ -89,14 +72,7 @@ export default defineCachedEventHandler(
       }),
     );
 
-    if (projects.length) {
-      kvStore
-        .setex(cacheKey, REDIS_CACHE_DURATION, JSON.stringify(projects))
-        .catch(() => undefined);
-    }
-
-    setResponseHeader(event, 'x-redis-cache', 'miss');
-
+    
     return projects;
   },
   {

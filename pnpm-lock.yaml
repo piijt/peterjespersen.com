@@ -8,9 +8,6 @@ dependencies:
   '@tailwindcss/vite':
     specifier: ^4.0.9
     version: 4.1.7(vite@6.3.5)
-  '@upstash/redis':
-    specifier: ^1.34.9
-    version: 1.34.9
   nuxt-lucide-icons:
     specifier: 1.0.5
     version: 1.0.5(vue@3.5.13)
@@ -24,7 +21,7 @@ dependencies:
 devDependencies:
   nuxt:
     specifier: 3.15.4
-    version: 3.15.4(@upstash/redis@1.34.9)(typescript@5.8.3)(vite@6.3.5)
+    version: 3.15.4(typescript@5.8.3)(vite@6.3.5)
   prettier:
     specifier: ^3.5.2
     version: 3.5.3
@@ -1405,6 +1402,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.8
+      napi-wasm: 1.1.3
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -2045,11 +2043,6 @@ packages:
       unhead: 1.11.20
       vue: 3.5.13(typescript@5.8.3)
     dev: true
-
-  /@upstash/redis@1.34.9:
-    resolution: {integrity: sha512-7qzzF2FQP5VxR2YUNjemWs+hl/8VzJJ6fOkT7O7kt9Ct8olEVzb1g6/ik6B8Pb8W7ZmYv81SdlVV9F6O8bh/gw==}
-    dependencies:
-      crypto-js: 4.2.0
 
   /@vercel/nft@0.27.7(rollup@4.41.0):
     resolution: {integrity: sha512-FG6H5YkP4bdw9Ll1qhmbxuE8KwW2E/g8fJpM183fWQLeVDGqzeywMIeJ9h2txdWZ03psgWMn6QymTxaDLmdwUg==}
@@ -3070,9 +3063,6 @@ packages:
     dependencies:
       uncrypto: 0.1.3
     dev: true
-
-  /crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   /css-declaration-sorter@7.2.0(postcss@8.5.3):
     resolution: {integrity: sha512-h70rUM+3PNFuaBDTLe8wF/cdWu+dOZmb7pJt8Z2sedYbAcQVQV/tEchueg3GWxwqS0cxtbxmaHEdkNACqcvsow==}
@@ -4962,6 +4952,10 @@ packages:
     resolution: {integrity: sha512-9ca1h0Xjvo9bEkE4UOxgAzLV0jHKe6LMaxo37ND2DAhhAtd0j8pR1Wxz+/goMrZO8AEZTWCmyaOsFI/W5AdpCQ==}
     dev: true
 
+  /napi-wasm@1.1.3:
+    resolution: {integrity: sha512-h/4nMGsHjZDCYmQVNODIrYACVJ+I9KItbG+0si6W/jSjdA9JbWDoU4LLeMXVcEQGHjttI2tuXqDrbGF7qkUHHg==}
+    dev: true
+
   /nested-error-stacks@2.1.1:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
@@ -4978,7 +4972,7 @@ packages:
       qs: 6.14.0
     dev: true
 
-  /nitropack@2.11.12(@upstash/redis@1.34.9):
+  /nitropack@2.11.12:
     resolution: {integrity: sha512-e2AdQrEY1IVoNTdyjfEQV93xkqz4SQxAMR0xWF8mZUUHxMLm6S4nPzpscjksmT4OdUxl0N8/DCaGjKQ9ghdodA==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -5054,7 +5048,7 @@ packages:
       unenv: 2.0.0-rc.17
       unimport: 5.0.1
       unplugin-utils: 0.2.4
-      unstorage: 1.16.0(@upstash/redis@1.34.9)(db0@0.3.2)(ioredis@5.6.1)
+      unstorage: 1.16.0(db0@0.3.2)(ioredis@5.6.1)
       untyped: 2.0.0
       unwasm: 0.3.9
       youch: 4.1.0-beta.7
@@ -5230,7 +5224,7 @@ packages:
       - vue
     dev: false
 
-  /nuxt@3.15.4(@upstash/redis@1.34.9)(typescript@5.8.3)(vite@6.3.5):
+  /nuxt@3.15.4(typescript@5.8.3)(vite@6.3.5):
     resolution: {integrity: sha512-hSbZO4mR0uAMJtZPNTnCfiAtgleoOu28gvJcBNU7KQHgWnNXPjlWgwMczko2O4Tmnv9zIe/CQged+2HsPwl2ZA==}
     engines: {node: ^18.20.5 || ^20.9.0 || >=22.0.0}
     hasBin: true
@@ -5279,7 +5273,7 @@ packages:
       magic-string: 0.30.17
       mlly: 1.7.4
       nanotar: 0.2.0
-      nitropack: 2.11.12(@upstash/redis@1.34.9)
+      nitropack: 2.11.12
       nypm: 0.5.4
       ofetch: 1.4.1
       ohash: 1.1.6
@@ -5301,7 +5295,7 @@ packages:
       unimport: 4.2.0
       unplugin: 2.3.4
       unplugin-vue-router: 0.11.2(vue-router@4.5.0)(vue@3.5.13)
-      unstorage: 1.16.0(@upstash/redis@1.34.9)(db0@0.3.2)(ioredis@5.6.1)
+      unstorage: 1.16.0(db0@0.3.2)(ioredis@5.6.1)
       untyped: 1.5.2
       vue: 3.5.13(typescript@5.8.3)
       vue-bundle-renderer: 2.1.1
@@ -6990,7 +6984,7 @@ packages:
       picomatch: 4.0.2
       webpack-virtual-modules: 0.6.2
 
-  /unstorage@1.16.0(@upstash/redis@1.34.9)(db0@0.3.2)(ioredis@5.6.1):
+  /unstorage@1.16.0(db0@0.3.2)(ioredis@5.6.1):
     resolution: {integrity: sha512-WQ37/H5A7LcRPWfYOrDa1Ys02xAbpPJq6q5GkO88FBXVSQzHd7+BjEwfRqyaSWCv9MbsJy058GWjjPjcJ16GGA==}
     peerDependencies:
       '@azure/app-configuration': ^1.8.0
@@ -7049,7 +7043,6 @@ packages:
       uploadthing:
         optional: true
     dependencies:
-      '@upstash/redis': 1.34.9
       anymatch: 3.1.3
       chokidar: 4.0.3
       db0: 0.3.2
