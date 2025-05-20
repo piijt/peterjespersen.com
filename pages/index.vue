@@ -1,7 +1,7 @@
 <template>
   <div>
     <About />
-    <img src="/images/isometric_laptop_blackbg.png" />
+    <GithubProjects />
   </div>
 </template>
 

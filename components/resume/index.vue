@@ -3,7 +3,9 @@
     <h2 class="text-lg font-semibold mb-4">Work Experience</h2>
     <div class="space-y-8">
       <div v-for="(entry, index) in entries" :key="index" class="relative pl-6">
-        <div class="absolute left-0 top-2 w-2 h-2 rounded-full bg-gray-700"></div>
+        <div
+          class="absolute left-0 top-2 w-2 h-2 rounded-full bg-gray-700"
+        ></div>
         <NuxtLink class="block" :to="entry.website" target="_blank">
           <div class="flex flex-col">
             <span class="primary font-medium">
@@ -22,15 +24,19 @@
         </div>
         <div class="mt-3 text-gray-300">
           <p>{{ entry.tldr }}</p>
-          <NuxtLink v-if="summary_view" :to="'/work'" class="primary text-sm mt-1 inline-block">
+          <NuxtLink
+            v-if="summary_view"
+            :to="'/work'"
+            class="primary text-sm mt-1 inline-block"
+          >
             Read more...
           </NuxtLink>
         </div>
         <div v-if="!summary_view" class="mt-4 flex flex-wrap gap-2">
-          <img 
-            v-for="(tech, techIndex) in entry.tech" 
-            :key="techIndex" 
-            :src="tech" 
+          <img
+            v-for="(tech, techIndex) in entry.tech"
+            :key="techIndex"
+            :src="tech"
             :alt="tech"
             class="h-6"
           />
