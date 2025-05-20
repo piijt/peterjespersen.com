@@ -1,9 +1,7 @@
 <template>
   <div>
     <About />
-    <Seperator />
     <GithubProjects />
-    <img src="/images/isometric_laptop_blackbg.png" />
   </div>
 </template>
 

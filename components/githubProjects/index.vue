@@ -20,18 +20,12 @@
                 {{ repo.name }}
               </a>
             </h3>
-            <div class="flex items-center space-x-2 text-sm text-gray-400">
+            <div class="flex items-center text-sm text-gray-400">
               <span class="flex items-center">
                 <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 .25a.75.75 0 01.673.418l3.058 6.197 6.839.994a.75.75 0 01.415 1.279l-4.948 4.823 1.168 6.811a.75.75 0 01-1.088.791L12 18.347l-6.117 3.216a.75.75 0 01-1.088-.79l1.168-6.812-4.948-4.823a.75.75 0 01.416-1.28l6.838-.993L11.327.668A.75.75 0 0112 .25z"/>
                 </svg>
                 {{ repo.stargazers }}
-              </span>
-              <span class="flex items-center">
-                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zm-3.25-1.75a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zm-3-12.75a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM2.5 4.75a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0zM18.25 6.5a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM15 4.75a3.25 3.25 0 106.5 0 3.25 3.25 0 00-6.5 0z"/>
-                </svg>
-                {{ repo.forks }}
               </span>
             </div>
           </div>
@@ -75,7 +69,7 @@ const fetchPinnedRepos = async () => {
     const token = config.public.githubToken;
     
     if (!token) {
-      throw new Error('GitHub token is not configured');
+      throw new Error('GitHub token is not configured. Please check environment variables.');
     }
 
     const query = `
@@ -109,7 +103,7 @@ const fetchPinnedRepos = async () => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': `token ${token}`
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({ query })
     });
@@ -117,6 +111,7 @@ const fetchPinnedRepos = async () => {
     const data = await response.json();
     
     if (data.errors) {
+      console.error('GitHub API Error:', data.errors); // Debug log
       throw new Error(data.errors[0].message);
     }
 
@@ -136,8 +131,8 @@ const fetchPinnedRepos = async () => {
     
     repositories.value = pinnedRepos;
   } catch (err) {
+    console.error('Full error:', err); // Debug log
     error.value = err instanceof Error ? err.message : 'Failed to load projects. Please try again later.';
-    console.error('Error fetching GitHub repositories:', err);
   } finally {
     loading.value = false;
   }
