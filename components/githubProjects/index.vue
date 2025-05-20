@@ -1,7 +1,7 @@
 <template>
   <div class="text-sm">
     <h2 class="text-lg font-semibold mb-4">Featured Projects</h2>
-    <div v-if="loading" class="text-gray-400">
+    <div v-if="pending" class="text-gray-400">
       Loading projects...
     </div>
     <div v-else-if="error" class="text-red-400">
@@ -9,9 +9,9 @@
     </div>
     <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div 
-        v-for="repo in repositories" 
+        v-for="repo in data?.user?.pinnedItems?.nodes" 
         :key="repo.id"
-        class="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors duration-200"
+        class="bg-gray-800/50 rounded-lg p-4 hover:bg-gray-700/50 transition-colors duration-200"
       >
         <div class="flex flex-col h-full">
           <div class="flex items-center justify-between mb-2">
@@ -25,18 +25,18 @@
                 <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 .25a.75.75 0 01.673.418l3.058 6.197 6.839.994a.75.75 0 01.415 1.279l-4.948 4.823 1.168 6.811a.75.75 0 01-1.088.791L12 18.347l-6.117 3.216a.75.75 0 01-1.088-.79l1.168-6.812-4.948-4.823a.75.75 0 01.416-1.28l6.838-.993L11.327.668A.75.75 0 0112 .25z"/>
                 </svg>
-                {{ repo.stargazers }}
+                {{ repo.stargazerCount }}
               </span>
             </div>
           </div>
-          <p class="text-gray-300 text-sm mb-4 flex-grow">{{ repo.description }}</p>
+          <p class="text-gray-300 text-sm mb-4 flex-grow">{{ repo.description || 'No description available' }}</p>
           <div class="flex flex-wrap gap-2 mt-auto">
             <span 
-              v-for="topic in repo.topics" 
-              :key="topic"
-              class="text-xs px-2 py-1 bg-gray-700 rounded-full text-gray-300"
+              v-for="topic in repo.repositoryTopics.nodes" 
+              :key="topic.topic.name"
+              class="text-xs px-2 py-1 bg-gray-700/50 rounded-full text-gray-300"
             >
-              {{ topic }}
+              {{ topic.topic.name }}
             </span>
           </div>
         </div>
@@ -46,49 +46,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useRuntimeConfig } from 'nuxt/app';
+const fetchGithubProjects = async () => {
+  const config = useRuntimeConfig();
+  const token = config.public.githubToken;
 
-interface Repository {
-  id: number;
-  name: string;
-  description: string;
-  url: string;
-  stargazers: number;
-  forks: number;
-  topics: string[];
-}
-
-const repositories = ref<Repository[]>([]);
-const loading = ref(true);
-const error = ref('');
-
-const fetchPinnedRepos = async () => {
-  try {
-    const config = useRuntimeConfig();
-    const token = config.public.githubToken;
-    
-    if (!token) {
-      throw new Error('GitHub token is not configured. Please check environment variables.');
-    }
-
-    const query = `
-      query {
-        user(login: "piijt") {
-          pinnedItems(first: 6, types: REPOSITORY) {
-            nodes {
-              ... on Repository {
-                id
-                name
-                description
-                url
-                stargazerCount
-                forkCount
-                repositoryTopics(first: 10) {
-                  nodes {
-                    topic {
-                      name
-                    }
+  const query = `
+    query {
+      user(login: "piijt") {
+        pinnedItems(first: 6, types: REPOSITORY) {
+          nodes {
+            ... on Repository {
+              id
+              name
+              description
+              url
+              stargazerCount
+              repositoryTopics(first: 10) {
+                nodes {
+                  topic {
+                    name
                   }
                 }
               }
@@ -96,49 +72,22 @@ const fetchPinnedRepos = async () => {
           }
         }
       }
-    `;
-
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({ query })
-    });
-
-    const data = await response.json();
-    
-    if (data.errors) {
-      console.error('GitHub API Error:', data.errors); // Debug log
-      throw new Error(data.errors[0].message);
     }
+  `;
 
-    if (!data.data?.user?.pinnedItems?.nodes) {
-      throw new Error('No pinned repositories found');
-    }
-
-    const pinnedRepos = data.data.user.pinnedItems.nodes.map((repo: any) => ({
-      id: repo.id,
-      name: repo.name,
-      description: repo.description || 'No description available',
-      url: repo.url,
-      stargazers: repo.stargazerCount,
-      forks: repo.forkCount,
-      topics: repo.repositoryTopics.nodes.map((node: any) => node.topic.name)
-    }));
-    
-    repositories.value = pinnedRepos;
-  } catch (err) {
-    console.error('Full error:', err); // Debug log
-    error.value = err instanceof Error ? err.message : 'Failed to load projects. Please try again later.';
-  } finally {
-    loading.value = false;
-  }
+  return useFetch('https://api.github.com/graphql', {
+    method: 'POST',
+    body: JSON.stringify({ query }),
+    key: 'github-pinned-repos',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    transform: (response: any) => response.data,
+    server: true
+  });
 };
 
-onMounted(() => {
-  fetchPinnedRepos();
-});
+const { data, pending, error } = await fetchGithubProjects();
 </script> 
