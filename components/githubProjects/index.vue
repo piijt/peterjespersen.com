@@ -9,8 +9,8 @@
     </div>
     <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div 
-        v-for="repo in data?.user?.pinnedItems?.nodes" 
-        :key="repo.id"
+        v-for="repo in data" 
+        :key="repo.name"
         class="bg-gray-800/50 rounded-lg p-4 hover:bg-gray-700/50 transition-colors duration-200"
       >
         <div class="flex flex-col h-full">
@@ -32,11 +32,12 @@
           <p class="text-gray-300 text-sm mb-4 flex-grow">{{ repo.description || 'No description available' }}</p>
           <div class="flex flex-wrap gap-2 mt-auto">
             <span 
-              v-for="topic in repo.repositoryTopics.nodes" 
-              :key="topic.topic.name"
-              class="text-xs px-2 py-1 bg-gray-700/50 rounded-full text-gray-300"
+              v-for="lang in repo.languages" 
+              :key="lang.name"
+              class="text-xs px-2 py-1 rounded-full text-gray-300"
+              :style="{ backgroundColor: `${lang.color}20` }"
             >
-              {{ topic.topic.name }}
+              {{ lang.name }}
             </span>
           </div>
         </div>
@@ -46,72 +47,9 @@
 </template>
 
 <script setup lang="ts">
-const config = useRuntimeConfig();
-const token = config.public.githubToken;
+import type { Project } from '~/github';
 
-const query = `
-  query {
-    user(login: "piijt") {
-      pinnedItems(first: 6, types: REPOSITORY) {
-        nodes {
-          ... on Repository {
-            id
-            name
-            description
-            url
-            stargazerCount
-            repositoryTopics(first: 6) {
-              nodes {
-                topic {
-                  name
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-interface GitHubResponse {
-  data: {
-    user: {
-      pinnedItems: {
-        nodes: Array<{
-          id: string;
-          name: string;
-          description: string | null;
-          url: string;
-          stargazerCount: number;
-          repositoryTopics: {
-            nodes: Array<{
-              topic: {
-                name: string;
-              };
-            }>;
-          };
-        }>;
-      };
-    };
-  };
-}
-
-const { data, pending, error } = useAsyncData('github-pinned-repos', async () => {
-  const response = await $fetch<GitHubResponse>('https://api.github.com/graphql', {
-    method: 'POST',
-    body: JSON.stringify({ query }),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }
-  });
-  return response.data;
-}, {
-  server: true,
-  lazy: false,
-  immediate: true,
-  transform: (response) => response
-});
+const { data, pending, error } = useAsyncData('github-projects', () => 
+  $fetch<Project[]>('/api/github/projects')
+);
 </script> 

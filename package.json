@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
+    "@upstash/redis": "^1.34.9",
     "nuxt-lucide-icons": "1.0.5",
     "tailwindcss": "^4.0.9",
     "three": "^0.174.0"
