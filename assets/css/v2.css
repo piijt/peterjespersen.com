@@ -1,0 +1,72 @@
+/* v2 design tokens + base. Every section/world uses these, never hard-coded colours. */
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Fira+Sans:wght@400;500;700&family=Fira+Code:wght@400;600&display=swap");
+
+:root {
+  --bg: #0b0b10;
+  --bg-2: #16161d;            /* the original peterjespersen.com background */
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --text: #ecedf3;
+  --text-2: #b4b7c6;
+  --muted: #7c8095;
+
+  --cyan: #44bce3;            /* brand primary; also "personal account" */
+  --mint: #3cf0b9;            /* brand secondary */
+  --gold: #f2c94c;            /* "work account" */
+  --violet: #8b5cf6;
+  --pink: #ff4fa3;
+
+  --grad-brand: linear-gradient(120deg, var(--cyan), var(--mint));
+  --grad-hot: linear-gradient(120deg, var(--violet), var(--pink), var(--gold));
+
+  --font-display: "Unbounded", "Fira Sans", system-ui, sans-serif;
+  --font-sans: "Fira Sans", system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, monospace;
+
+  --radius: 14px;
+  --radius-lg: 22px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --max: 1200px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { background: var(--bg); color-scheme: dark; scroll-behavior: smooth; }
+body.v2 {
+  margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body.v2 p, body.v2 li { font-family: var(--font-sans); }
+body.v2 ::selection { background: var(--cyan); color: var(--bg); }
+
+.v2-container { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.v2-eyebrow {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mint);
+}
+.v2-h2 {
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.02;
+  font-size: clamp(36px, 7vw, 88px); margin: 12px 0 0;
+}
+.v2-grad { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.v2-grad-hot { background: var(--grad-hot); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* background-clip: text only paints inside the box, and tight display line-heights + negative letter-spacing push
+   descenders (the p in Jespersen) and the last glyph's edge outside it. Pad the paint area, cancel it in layout. */
+.v2-grad, .v2-grad-hot {
+  padding: 0 0.08em 0.16em 0; margin: 0 -0.08em -0.16em 0;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.v2-lede { color: var(--text-2); font-size: clamp(16px, 1.6vw, 20px); line-height: 1.6; max-width: 62ch; }
+.v2-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); font-family: var(--font-mono); font-size: 12px; color: var(--text-2);
+}
+
+/* reveal-on-scroll: add .v2-reveal, toggle .is-in (see composables/useInView.ts → v-reveal) */
+.v2-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+.v2-reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .v2-reveal { opacity: 1; transform: none; transition: none; }
+}

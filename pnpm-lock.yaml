@@ -19,6 +19,9 @@ dependencies:
     version: 0.174.0
 
 devDependencies:
+  "@types/three":
+    specifier: 0.174.0
+    version: 0.174.0
   nuxt:
     specifier: 3.15.4
     version: 3.15.4(typescript@5.8.3)(vite@6.3.5)
@@ -2498,6 +2501,13 @@ packages:
     engines: { node: ">=10.13.0" }
     dev: true
 
+  /@tweenjs/tween.js@23.1.3:
+    resolution:
+      {
+        integrity: sha512-vJmvvwFxYuGnF2axRtPYocag6Clbb5YS7kLL+SO/TeVFzHqDIWrNKYtcsPMibjDx9O+bu+psAy9NKfWklassUA==,
+      }
+    dev: true
+
   /@types/estree@1.0.7:
     resolution:
       {
@@ -2539,10 +2549,38 @@ packages:
       }
     dev: true
 
+  /@types/stats.js@0.17.4:
+    resolution:
+      {
+        integrity: sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==,
+      }
+    dev: true
+
+  /@types/three@0.174.0:
+    resolution:
+      {
+        integrity: sha512-De/+vZnfg2aVWNiuy1Ldu+n2ydgw1osinmiZTAn0necE++eOfsygL8JpZgFjR2uHmAPo89MkxBj3JJ+2BMe+Uw==,
+      }
+    dependencies:
+      "@tweenjs/tween.js": 23.1.3
+      "@types/stats.js": 0.17.4
+      "@types/webxr": 0.5.24
+      "@webgpu/types": 0.1.74
+      fflate: 0.8.3
+      meshoptimizer: 0.18.1
+    dev: true
+
   /@types/triple-beam@1.3.5:
     resolution:
       {
         integrity: sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==,
+      }
+    dev: true
+
+  /@types/webxr@0.5.24:
+    resolution:
+      {
+        integrity: sha512-h8fgEd/DpoS9CBrjEQXR+dIDraopAEfu4wYVNY2tEPwk60stPWhvZMf4Foo5FakuQ7HFZoa8WceaWFervK2Ovg==,
       }
     dev: true
 
@@ -3008,6 +3046,13 @@ packages:
     resolution:
       {
         integrity: sha512-oXTwNxVfc9EtP1zzXAlSlgARLXNC84frFYkS0HHz0h3E4WZSP9sywqjqzGCP9Y34M8ipNmd380pVgmMuwELDyQ==,
+      }
+    dev: true
+
+  /@webgpu/types@0.1.74:
+    resolution:
+      {
+        integrity: sha512-lgiI4hbuLcI9unnm2cL/tvCaQU45dp0xcLWJh5uB/9MBGvIA4F8XIk7nSiBeg+K4xWGYwgZKn80LmERI5CxoTA==,
       }
     dev: true
 
@@ -5037,6 +5082,13 @@ packages:
       web-streams-polyfill: 3.3.3
     dev: true
 
+  /fflate@0.8.3:
+    resolution:
+      {
+        integrity: sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA==,
+      }
+    dev: true
+
   /file-uri-to-path@1.0.0:
     resolution:
       {
@@ -6564,6 +6616,13 @@ packages:
         integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==,
       }
     engines: { node: ">= 8" }
+    dev: true
+
+  /meshoptimizer@0.18.1:
+    resolution:
+      {
+        integrity: sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==,
+      }
     dev: true
 
   /micro-api-client@3.3.0:
