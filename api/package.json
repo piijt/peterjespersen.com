@@ -1,0 +1,28 @@
+{
+  "name": "peterjespersen-api",
+  "private": true,
+  "type": "module",
+  "description": "API for peterjespersen.com: merged GitHub contributions of both accounts, persisted in MongoDB",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "start": "tsx src/index.ts",
+    "sync": "tsx --env-file=.env src/cli-sync.ts",
+    "snapshot": "tsx --env-file=.env src/cli-snapshot.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "tsx": "^4.19.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.3"
+  }
+}

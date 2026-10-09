@@ -2,7 +2,7 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-  css: ["~/assets/css/main.css"],
+  css: ["~/assets/css/main.css", "~/assets/css/v2.css"],
   app: {
     head: {
       link: [
@@ -42,4 +42,10 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
+  runtimeConfig: {
+    public: {
+      // the portfolio API (api/); empty = use the bundled contributions snapshot only
+      apiBase: process.env.NUXT_PUBLIC_API_BASE ?? "",
+    },
+  },
 });
