@@ -3,6 +3,21 @@
 useHead({ bodyAttrs: { class: "v2" } });
 const route = useRoute();
 
+// Section links: on the home page, scroll straight to the section and update the URL ourselves — routing a
+// same-page hash change through vue-router left the page where it was. From other pages (e.g. /resume → /#flow)
+// the link navigates normally and app/router.options.ts scrolls to the section once the home page has rendered.
+const NAV_OFFSET = 80;
+const router = useRouter();
+function go(href: string, e: MouseEvent) {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return; // new tab etc.: let the browser handle it
+  e.preventDefault();
+  const [path, hash] = href.split("#");
+  const el = route.path === (path || "/") && hash ? document.getElementById(hash) : null;
+  if (!el) return void router.push(href);
+  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (hash === "top" ? 0 : NAV_OFFSET), behavior: "smooth" });
+  if (location.hash !== `#${hash}`) history.pushState(history.state, "", `#${hash}`);
+}
+
 const links = [
   { href: "/#commits", label: "Commits" },
   { href: "/#trade-raid", label: "Trade-Raid" },
@@ -41,8 +56,8 @@ onBeforeUnmount(() => {
 <template>
   <div class="v2-shell">
     <nav class="nav" aria-label="Main">
-      <a href="/#top" class="brand" aria-label="Home"><span class="v2-grad">pj</span></a>
-      <a v-for="l in links" :key="l.href" :href="l.href" class="nav-link">{{ l.label }}</a>
+      <a href="/#top" class="brand" aria-label="Home" @click="go('/#top', $event)"><span class="v2-grad">pj</span></a>
+      <a v-for="l in links" :key="l.href" :href="l.href" class="nav-link" @click="go(l.href, $event)">{{ l.label }}</a>
       <NuxtLink v-if="route.path !== '/resume'" to="/resume" class="nav-link nav-cta">Resume</NuxtLink>
       <a v-else href="mailto:pj@peterjespersen.com" class="nav-link nav-cta">Contact</a>
     </nav>
