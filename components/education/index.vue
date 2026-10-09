@@ -1,26 +1,40 @@
 <template>
-  <div class="text-sm flex flex-col pt-2">
-    <p>Education</p>
-    <div class="pt-2" v-for="item in entries">
-      <div class="flex flex-col gap-x-2">
-        <span class="primary">
-          {{ item.school.title }}
-        </span>
-        <span>
-          {{ item.title }}
-        </span>
-      </div>
-      <span class="flex flex-row gap-x-2 m-auto text-gray-500 text-xs pt-1">
-        · {{ item.duration }}
-      </span>
-      <span class="flex flex-row gap-x-2 m-auto text-gray-500 text-xs pt-1">
-        · {{ item.location }}
-      </span>
-      <div class="flex flex-row gap-x-2 pt-1 align-end">
-        <p class="text-xs">Skills:</p>
-        <span class="text-gray-500 text-xs" v-for="s in item.skills"
-          >· {{ s }}</span
-        >
+  <div class="text-sm">
+    <h2 class="text-lg font-semibold mb-4">Education</h2>
+    <div class="space-y-8">
+      <div v-for="(item, index) in entries" :key="index" class="relative pl-6">
+        <div
+          class="absolute left-0 top-2 w-2 h-2 rounded-full bg-gray-700"
+        ></div>
+        <div class="flex flex-col">
+          <span class="primary font-medium cursor-pointer">
+            {{ item.school.title }}
+          </span>
+          <span class="text-gray-300 cursor-pointer">
+            {{ item.title }}
+          </span>
+        </div>
+        <div class="flex flex-col mt-2 text-gray-500 text-xs">
+          <span class="flex items-center">
+            <span class="mr-2">·</span>
+            {{ item.duration }}
+          </span>
+          <span class="flex items-center">
+            <span class="mr-2">·</span>
+            {{ item.location }}
+          </span>
+        </div>
+        <div class="mt-3">
+          <div class="flex flex-wrap gap-2">
+            <img
+              v-for="(skill, skillIndex) in item.skills"
+              :key="skillIndex"
+              :src="skill"
+              :alt="skill"
+              class="h-6"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -36,10 +50,10 @@ const entries = ref([
     },
     duration: "2018-2020",
     skills: [
-      "Objective Programming",
-      "Data Structures",
-      "Algorithms",
-      "Blockchain Technologies",
+      "https://img.shields.io/badge/Objective_Programming-282C34?style=for-the-badge&logo=java&logoColor=white",
+      "https://img.shields.io/badge/Data_Structures-282C34?style=for-the-badge&logo=java&logoColor=white",
+      "https://img.shields.io/badge/Algorithms-282C34?style=for-the-badge&logo=java&logoColor=white",
+      "https://img.shields.io/badge/Blockchain-282C34?style=for-the-badge&logo=ethereum&logoColor=white",
     ],
   },
   {
@@ -49,7 +63,13 @@ const entries = ref([
       title: "International Business College, Kolding",
     },
     duration: "2016-2018",
-    skills: ["PhP", "Adobe CC", "Photoshop", "Node.js", "Project Planning"],
+    skills: [
+      "https://img.shields.io/badge/PHP-282C34?style=for-the-badge&logo=php&logoColor=white",
+      "https://img.shields.io/badge/Adobe_CC-282C34?style=for-the-badge&logo=adobe&logoColor=white",
+      "https://img.shields.io/badge/Photoshop-282C34?style=for-the-badge&logo=adobe-photoshop&logoColor=white",
+      "https://img.shields.io/badge/Node.js-282C34?style=for-the-badge&logo=nodedotjs&logoColor=white",
+      "https://img.shields.io/badge/Project_Planning-282C34?style=for-the-badge&logo=trello&logoColor=white",
+    ],
   },
 ]);
 </script>

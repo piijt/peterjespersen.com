@@ -24,6 +24,7 @@ export const useWorkHistory = () => {
         "https://img.shields.io/badge/Kubernetes-282C34?style=for-the-badge&logo=kubernetes&logoColor=white",
         "https://img.shields.io/badge/Nuxt.js-282C34?style=for-the-badge&logo=nuxtdotjs&logoColor=white",
         "https://img.shields.io/badge/C%2B%2B-282C34?style=for-the-badge&logo=cplusplus&logoColor=white",
+        "https://img.shields.io/badge/C%23-282C34?style=for-the-badge&logo=csharp&logoColor=white",
         "https://img.shields.io/badge/TypeScript-282C34?logo=typescript&style=for-the-badge&link=",
         "https://img.shields.io/badge/Digital_Ocean-282C34?style=for-the-badge&logo=digitalocean&logoColor=white",
         "https://img.shields.io/badge/Node.js-282C34?logo=nodedotjs&style=for-the-badge&link=https://github.com/piijt?tab=repositories&q=&type=&language=javascript&sort=",

@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
-    class="cursor hover:text-[#3cf0b9;]"
-    exact-active-class="text-[#3cf0b9;]"
+    class="cursor hover:text-[#3cf0b9]"
+    exact-active-class="text-[#3cf0b9]"
     :class="custom__class"
     :to="to"
     :target="_target"

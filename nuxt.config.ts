@@ -43,9 +43,22 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
   runtimeConfig: {
+    githubToken: process.env.NUXT_GITHUB_TOKEN,
     public: {
       // the portfolio API (api/); empty = use the bundled contributions snapshot only
       apiBase: process.env.NUXT_PUBLIC_API_BASE ?? "",
     },
   },
+  routeRules: {
+    "/": {
+      prerender: true,
+    },
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ["/"],
+    },
+  },
+  ssr: true,
 });
